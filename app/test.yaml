@@ -1,0 +1,168 @@
+Mini Rack:
+  size: 12
+  servers:
+  - id: routerSwitch
+    units: 1
+    servers:
+      - id: router
+        name: Router
+        icon: Ubiquiti
+        icon_color: "#0559C9"
+        units: 1
+        ports:
+          - type: rj45
+            label: WAN
+            color: "#0559C9"
+          - type: rj45
+            label: LAN
+            color: "#AAFFAA"
+      - id: switch1
+        name: Switch 1
+        icon: Ubiquiti
+        icon_color: "#0559C9"
+        units: 1
+        ports:
+          - type: rj45
+            label: Router
+            color: "#AAFFAA"
+          - type: rj45
+          - type: rj45
+          - type: rj45
+          - type: rj45
+
+  # - id: mswitch1
+  #   name: Switch 1
+  #   icon: Ubiquiti
+  #   icon_color: "#0559C9"
+  #   units: 1
+  #   ports:
+  #     - type: rj45
+  #       label: Router
+  #       color: "#FFAAAA"
+  #     - type: rj45
+  #     - type: rj45
+  #     - type: rj45
+  #     - type: rj45
+  # - id: mswitch2
+  #   name: Switch 2
+  #   icon: Ubiquiti
+  #   icon_color: "#0559C9"
+  #   units: 1
+  #   ports:
+  #     - type: rj45
+  #       label: Router
+  #       color: "#FFAAAA"
+  #     - type: rj45
+  #     - type: rj45
+  #     - type: rj45
+  #     - type: rj45
+
+  - id: proxbox
+    name: Proxmox
+    icon: Proxmox
+    icon_color: "#E57000"
+    units: 2
+    ports:
+      - type: rj45
+
+  - id: lap1
+    name: Docker Laptop
+    icon: Docker
+    icon_color: "#2496ED"
+    units: 1
+    ports:
+      - type: rj45
+
+
+  connections: 
+    - type: eth
+      from: router-1
+      to: switch1-0
+      color: "#AAFFAA88"
+    - type: eth
+      from: switch1-4
+      to: proxbox-0
+    - type: eth
+      from: switch1-3
+      to: lap1-0
+
+
+Stora Golvet:
+  size: 18
+  servers:
+    - id: SG-switch
+      name: Switch
+      units: 1
+    
+    - id: SG-proc
+      name: Processor
+      units: 1
+      ports:
+        - type: xlr
+          label: 18
+        - type: xlr
+          label: 19
+        - type: xlr
+          label: 20
+        - type: xlr
+          label: 21
+
+    - id: SG-top-r
+      name: Slutsteg Top & Trubb R
+      units: 2
+      ports:
+        - type: xlr
+          label: 18
+        - type: speakon
+          label: A
+        - type: speakon
+          label: B
+      
+    - id: SG-top-l
+      name: Slutsteg Top & Trubb L
+      units: 2
+      ports:
+        - type: xlr
+          label: 19
+        - type: speakon
+          label: A
+        - type: speakon
+          label: B
+    
+    - id: SG-bas-r
+      name: Slutsteg Bas R
+      units: 3
+      ports:
+        - type: xlr
+          label: 20
+        - type: speakon
+
+    - id: SG-bas-l
+      name: Slutsteg Bas L
+      units: 3
+      ports:
+        - type: xlr
+          label: 21
+        - type: speakon
+
+
+  connections:
+    - type: xlr
+      from: SG-proc-0
+      to: SG-top-r-0
+      label: 18
+    
+    - type: xlr
+      from: SG-proc-1
+      to: SG-top-l-0
+      label: 19
+
+    - type: xlr
+      from: SG-proc-2
+      to: SG-bas-r-0
+      label: 20
+
+    - type: xlr
+      from: SG-proc-3
+      to: SG-bas-l-0
+      label: 20
