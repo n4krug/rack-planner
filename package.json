@@ -14,9 +14,7 @@
     "@mdi/react": "^1.6.1",
     "next": "15.2.2",
     "react": "^19.0.0",
-    "react-connect-elements": "^0.1.1",
     "react-dom": "^19.0.0",
-    "react-lineto": "^3.3.0",
     "react-xarrows": "^2.0.2",
     "yaml": "^2.7.0"
   },
